@@ -1,6 +1,6 @@
-import {useState} from "react"
+import { useState } from "react"
 
-export default function Tarea({id, tarea, terminada,borrarTarea,actualizarEstado,actualizarTexto}){
+export default function Tarea({id,tarea,terminada,borrarTarea,actualizarEstado,actualizarTexto}){
 
     let [editando,setEditando] = useState(false)
     let [tareaTemporal,setTareaTemporal] = useState(tarea)
@@ -40,16 +40,30 @@ export default function Tarea({id, tarea, terminada,borrarTarea,actualizarEstado
 
                 } }>{ editando ? "guardar" : "editar" }</button>
                 <button className="boton" onClick={ () => {
-        fetch("https://api-todo-nvvq.onrender.com/tareas/actualizar/estado/" +id, {
-            method: "PUT"
-        })
-        .then(({status}) => {
-            if(status == 204){
-                return actualizarEstado(id)
-            }
-            console.log("error")
-        })} } ><span></span></button>
-    </div>
-    
-    }
-   
+
+                    fetch("https://api-todo-mb48.onrender.com/tareas/borrar/" + id, {
+                        method : "DELETE"
+                    })
+                    .then(({status}) => {
+                        if(status == 204){
+                            return borrarTarea(id)
+                        }
+                        console.log("..error")
+                    })
+
+                } }>borrar</button>
+                <button className={ `estado ${ terminada ? "terminada" : "" }` } onClick={ () => {
+
+                    fetch("https://api-todo-mb48.onrender.com/tareas/actualizar/estado/" + id, {
+                        method : "PUT"
+                    })
+                    .then(({status}) => {
+                        if(status == 204){
+                            return actualizarEstado(id)
+                        }
+                        console.log("..error")
+                    })
+
+                } }><span></span></button>
+            </div>
+}
