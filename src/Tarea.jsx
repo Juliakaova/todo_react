@@ -14,7 +14,7 @@ export default function Tarea({id,tarea,terminada,borrarTarea,actualizarEstado,a
                         //intentar guardar
                         if(tareaTemporal.trim() != "" && tareaTemporal.trim() != tarea){
 
-                            let {status} = await fetch("https://api-todo-mb48.onrender.com/tareas/actualizar/texto/" + id, {
+                            let {status} = await fetch("https://api-todo-nvvq.onrender.com/tareas/actualizar/texto/" + id, {
                                             method : "PUT",
                                             body : JSON.stringify({ tarea : tareaTemporal.trim()}),
                                             headers : {
@@ -41,7 +41,7 @@ export default function Tarea({id,tarea,terminada,borrarTarea,actualizarEstado,a
                 } }>{ editando ? "guardar" : "editar" }</button>
                 <button className="boton" onClick={ () => {
 
-                    fetch("https://api-todo-mb48.onrender.com/tareas/borrar/" + id, {
+                    fetch("https://api-todo-nvvq.onrender.com/tareas/borrar/" + id, {
                         method : "DELETE"
                     })
                     .then(({status}) => {
@@ -54,7 +54,7 @@ export default function Tarea({id,tarea,terminada,borrarTarea,actualizarEstado,a
                 } }>borrar</button>
                 <button className={ `estado ${ terminada ? "terminada" : "" }` } onClick={ () => {
 
-                    fetch("https://api-todo-mb48.onrender.com/tareas/actualizar/estado/" + id, {
+                    fetch("https://api-todo-nvvq.onrender.com/tareas/actualizar/estado/" + id, {
                         method : "PUT"
                     })
                     .then(({status}) => {
